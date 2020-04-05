@@ -18,7 +18,8 @@ const CreateProfile = ({
     facebook: '',
     linkedin: '',
     phoneNo: '',
-    time: ''
+    time: '',
+    error: {}
   });
 
   const [file, setFile] = useState('');
@@ -33,7 +34,8 @@ const CreateProfile = ({
     facebook,
     linkedin,
     phoneNo,
-    time
+    time,
+    error
   } = formData;
 
   const onChange = e =>
@@ -55,7 +57,29 @@ const CreateProfile = ({
     fd.append('time', time);
     fd.append('file', file);
 
-    createProfile(fd, history);
+    console.log(status, skills, facebook, phoneNo, time, file);
+    if (status && skills && phoneNo && facebook && time && file !== '') {
+      createProfile(fd, history);
+    } else {
+      if (!status) {
+        error.status = 'Status is required';
+      }
+      if (!skills) {
+        error.skills = 'Subjects field is required';
+      }
+      if (!phoneNo) {
+        error.phoneNo = 'Mobile No is required';
+      }
+      if (!facebook) {
+        error.facebook = 'Facebook is required';
+      }
+      if (!time) {
+        error.time = 'Prefered Time is required';
+      }
+      if (!file) {
+        error.file = 'Authentication Card is required';
+      }
+    }
   };
 
   useEffect(() => {
@@ -80,6 +104,7 @@ const CreateProfile = ({
             <option value='Student'>Student</option>
             <option value='Teacher'>Teacher</option>
           </select>
+          <h3 style={{ color: 'red' }}>{error.status}</h3>
           <small className='form-text'>
             Give us an idea of where you are at in your career
           </small>
@@ -104,6 +129,7 @@ const CreateProfile = ({
             value={skills}
             onChange={e => onChange(e)}
           />
+          <h3 style={{ color: 'red' }}>{error.skills}</h3>
           <small className='form-text'>
             Please use comma separated values (eg.
             Math,Physics,Chemistry,English)
@@ -117,6 +143,7 @@ const CreateProfile = ({
             value={phoneNo}
             onChange={e => onChange(e)}
           />
+          <h3 style={{ color: 'red' }}>{error.phoneNo}</h3>
           <small className='form-text'>Your contact number</small>
         </div>
         <div className='form-group'>
@@ -127,6 +154,7 @@ const CreateProfile = ({
             value={facebook}
             onChange={e => onChange(e)}
           />
+          <h3 style={{ color: 'red' }}>{error.facebook}</h3>
           <small className='form-text'>Your Facebook Link</small>
         </div>
         <div className='form-group'>
@@ -147,6 +175,7 @@ const CreateProfile = ({
             value={time}
             onChange={e => onChange(e)}
           />
+          <h3 style={{ color: 'red' }}>{error.time}</h3>
           <small className='form-text'> (eg. 8.00 pm to 11.00 pm)</small>
         </div>
         <div className='form-group'>
@@ -168,6 +197,7 @@ const CreateProfile = ({
               onChange={e => onFileChange(e)}
             />
           </label>
+          <h3 style={{ color: 'red' }}>{error.file}</h3>
           <small className='form-text'>
             If you do not upload any authentication card,
             <br /> you might not be approved to become a user of Education
