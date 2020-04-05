@@ -107,12 +107,12 @@ const CreateProfile = ({
       <form className='form' onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
           <select name='status' value={status} onChange={e => onChange(e)}>
-            <option value='0'>* Select Professional Status</option>
+            <option value='0'>* Join As</option>
             <option value='Student'>Student</option>
             <option value='Teacher'>Teacher</option>
           </select>
           <small className='form-text'>
-            Give us an idea of where you are at in your career
+            Tell us if you want to become a teacher or student
           </small>
         </div>
         <div className='form-group'>
