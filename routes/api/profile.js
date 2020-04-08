@@ -16,13 +16,15 @@ const app = express();
 
 mongoose.set('useFindAndModify', false);
 
+const s = require('../../config/s3');
+
 /**
  * PROFILE IMAGE STORING STARTS
  */
 const s3 = new aws.S3({
-  accessKeyId: 'AKIASHTD4GJXJAJ3JRRA',
-  secretAccessKey: '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',
-  Bucket: 'educationbachaobucket'
+  accessKeyId: `${s.accessKeyId}`,
+  secretAccessKey: `${s.secretAccessKey}`,
+  Bucket: `${s.Bucket}`
 });
 
 //Check File Type
@@ -324,7 +326,6 @@ router.put('/user/approve/:user_id', async (req, res) => {
           console.log('Something wrong when updating data!');
         }
         res.json(doc);
-        console.log(doc);
       }
     );
   } catch (err) {
@@ -344,7 +345,6 @@ router.put('/user/reject/:user_id', async (req, res) => {
           console.log('Something wrong when updating data!');
         }
         res.json(doc);
-        console.log(doc);
       }
     );
   } catch (err) {
