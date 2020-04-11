@@ -19,50 +19,54 @@ const Customer = ({
 
   return (
     <Fragment>
-      {user && user.email === 'raihanul.haque@northsouth.edu' ? (
-        <Fragment></Fragment>
-      ) : (
-        <Fragment></Fragment>
-      )}
-      {profile === null || loading ? (
-        <Spinner />
-      ) : (
+      {user && user.email === 'raihanul.haque@northsouth.edu' && (
         <Fragment>
-          <Link to='/profiles' className='btn btn-light'>
-            Back To Profiles
-          </Link>
-          <div className='profile-grid my-1'>
-            <ProfileTop profile={profile} />
-            <ProfileAbout profile={profile} />
-          </div>
-          <Fragment>
-            {profile && profile.file ? (
+          {' '}
+          {profile === null || loading ? (
+            <Spinner />
+          ) : (
+            <Fragment>
+              <Link to='/profiles' className='btn btn-light'>
+                Back To Profiles
+              </Link>
+              <div className='profile-grid my-1'>
+                <ProfileTop profile={profile} />
+                <ProfileAbout profile={profile} />
+              </div>
               <Fragment>
-                {' '}
-                <img
-                  src={profile && profile.file}
-                  style={{ width: '500px', margin: 'auto', display: 'block' }}
-                  alt='Indentificaton Card'
-                />
-              </Fragment>
-            ) : (
-              <Fragment>
-                <h3>This customer did not attach any image</h3>
-              </Fragment>
-            )}
-          </Fragment>{' '}
-          <Link
-            to={`/user/approve/${profile.user._id}`}
-            className='btn btn-primary'
-          >
-            Approve
-          </Link>
-          <Link
-            to={`/user/reject/${profile.user._id}`}
-            className='btn btn-primary'
-          >
-            Reject
-          </Link>
+                {profile && profile.file ? (
+                  <Fragment>
+                    {' '}
+                    <img
+                      src={profile && profile.file}
+                      style={{
+                        width: '500px',
+                        margin: 'auto',
+                        display: 'block'
+                      }}
+                      alt='Indentificaton Card'
+                    />
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <h3>This customer did not attach any image</h3>
+                  </Fragment>
+                )}
+              </Fragment>{' '}
+              <Link
+                to={`/user/approve/${profile.user._id}`}
+                className='btn btn-primary'
+              >
+                Approve
+              </Link>
+              <Link
+                to={`/user/reject/${profile.user._id}`}
+                className='btn btn-primary'
+              >
+                Reject
+              </Link>
+            </Fragment>
+          )}
         </Fragment>
       )}
     </Fragment>
