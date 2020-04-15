@@ -21,6 +21,7 @@ const CreateProfile = ({
     linkedin: '',
     phoneNo: '',
     time: '',
+    clas: '',
     error: {}
   });
 
@@ -37,6 +38,7 @@ const CreateProfile = ({
     linkedin,
     phoneNo,
     time,
+    clas,
     error
   } = formData;
 
@@ -57,6 +59,7 @@ const CreateProfile = ({
     fd.append('linkedin', linkedin);
     fd.append('phoneNo', phoneNo);
     fd.append('time', time);
+    fd.append('clas', clas);
     fd.append('file', file);
 
     if (status && skills && phoneNo && facebook && time && file !== '') {
@@ -81,6 +84,10 @@ const CreateProfile = ({
       if (!time) {
         error.time = 'Prefered Time is required';
         setAlert(error.time, 'danger');
+      }
+      if (!clas) {
+        error.clas = 'Class is required';
+        setAlert(error.clas, 'danger');
       }
       if (!file) {
         error.file = 'Authentication Card is required';
@@ -138,6 +145,20 @@ const CreateProfile = ({
           <small className='form-text'>
             Please use comma separated values (eg.
             Math,Physics,Chemistry,English)
+          </small>
+        </div>
+        <div className='form-group'>
+          <input
+            type='text'
+            placeholder='* Study Level'
+            name='clas'
+            value={clas}
+            onChange={e => onChange(e)}
+          />
+          <small className='form-text'>
+            If you joined as a student tell us which class you are in, If you
+            joined as a teacher tell us what is your preferred level of student
+            whom you will teach.
           </small>
         </div>
         <div className='form-group'>

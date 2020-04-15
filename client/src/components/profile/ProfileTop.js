@@ -8,6 +8,7 @@ const ProfileTop = ({
     location,
     social,
     time,
+    clas,
     user: { name, avatar }
   }
 }) => {
@@ -18,6 +19,7 @@ const ProfileTop = ({
       <p className='lead'>{status}</p>
       <p className='lead'>{phoneNo}</p>
       <p className='lead'>{time}</p>
+      <p className='lead'>{clas}</p>
       <p>{location && <span>{location}</span>}</p>
       <div className='icons my-1'>
         {social && social.facebook && (

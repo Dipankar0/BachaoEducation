@@ -130,7 +130,8 @@ router.post('/', [auth], upload.single('file'), async (req, res) => {
     facebook,
     linkedin,
     phoneNo,
-    time
+    time,
+    clas
   } = req.body;
 
   // Build profile object
@@ -141,6 +142,7 @@ router.post('/', [auth], upload.single('file'), async (req, res) => {
   if (status) profileFields.status = status;
   if (phoneNo) profileFields.phoneNo = phoneNo;
   if (time) profileFields.time = time;
+  if (clas) profileFields.clas = clas;
 
   if (skills) {
     profileFields.skills = skills.split(',').map(skill => skill.trim());

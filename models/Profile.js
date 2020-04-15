@@ -29,6 +29,9 @@ const ProfileSchema = new mongoose.Schema({
   time: {
     type: String
   },
+  clas: {
+    type: String
+  },
   file: {
     type: String,
     required: true

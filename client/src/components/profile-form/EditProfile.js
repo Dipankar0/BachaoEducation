@@ -11,7 +11,8 @@ const initialState = {
   facebook: '',
   linkedin: '',
   phoneNo: '',
-  time: ''
+  time: '',
+  clas: ''
 };
 
 const EditProfile = ({
@@ -38,7 +39,16 @@ const EditProfile = ({
     }
   }, [loading, getCurrentProfile, profile]);
 
-  const { location, time, skills, bio, facebook, linkedin, phoneNo } = formData;
+  const {
+    location,
+    time,
+    skills,
+    bio,
+    facebook,
+    linkedin,
+    phoneNo,
+    clas
+  } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -53,6 +63,7 @@ const EditProfile = ({
     fd.append('linkedin', linkedin);
     fd.append('phoneNo', phoneNo);
     fd.append('time', time);
+    fd.append('clas', clas);
     createProfile(fd, history, true);
   };
 
@@ -87,6 +98,20 @@ const EditProfile = ({
           <small className='form-text'>
             Please use comma separated values (eg.
             Math,Physics,Chemistry,English)
+          </small>
+        </div>
+        <div className='form-group'>
+          <input
+            type='text'
+            placeholder='* Study Level'
+            name='clas'
+            value={clas}
+            onChange={e => onChange(e)}
+          />
+          <small className='form-text'>
+            If you joined as a student tell us which class you are in, If you
+            joined as a teacher tell us what is your preferred level of student
+            whom you will teach.
           </small>
         </div>
         <div className='form-group'>
